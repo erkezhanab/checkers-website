@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:3000/shop)",
+      "Bash(curl -s http://localhost:3000/learn)",
+      "Bash(curl -s http://localhost:3000/leaderboard)",
+      "Bash(curl -s -X POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyB3xBOcWDBQi3XXk4ldMgESjDR_MrTjnLE -H 'Content-Type: application/json' -d '{ *)",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s \"https://generativelanguage.googleapis.com/v1beta/models?key=AIzaSyB3xBOcWDBQi3XXk4ldMgESjDR_MrTjnLE\")",
+      "Bash(curl -s -X POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyB3xBOcWDBQi3XXk4ldMgESjDR_MrTjnLE -H 'Content-Type: application/json' -d '{\"contents\":[{\"parts\":[{\"text\":\"Return ONLY this JSON array, no extra text: [{\\\\\"type\\\\\":\\\\\"strategy\\\\\",\\\\\"description\\\\\":\\\\\"Test insight.\\\\\"}]\"}]}],\"generationConfig\":{\"temperature\":0.2,\"maxOutputTokens\":100}}')"
+    ]
+  }
+}

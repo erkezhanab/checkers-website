@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --board-light: #F0D9B5;
+    --board-dark: #B58863;
+    --board-highlight: #CDD16E;
+    --board-capture: #FF6B6B;
+    --board-selected: #7FC97F;
+  }
+
+  body {
+    @apply bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-200;
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  ::selection {
+    @apply bg-amber-200 dark:bg-amber-800;
+  }
+}
+
+@layer utilities {
+  .bg-board-light { background-color: var(--board-light); }
+  .bg-board-dark { background-color: var(--board-dark); }
+  .bg-board-highlight { background-color: var(--board-highlight); }
+  .bg-board-capture { background-color: var(--board-capture); }
+  .bg-board-selected { background-color: var(--board-selected); }
+  .border-board-highlight { border-color: var(--board-highlight); }
+  .border-board-capture { border-color: var(--board-capture); }
+
+  .hover\:bg-board-dark:hover { background-color: color-mix(in srgb, var(--board-dark) 90%, black); }
+}
