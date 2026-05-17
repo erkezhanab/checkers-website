@@ -1,131 +1,37 @@
-# ♟ Checkers — Online Draughts Game
 
-A modern, full-featured checkers (draughts) game built with Next.js 14, TypeScript, Tailwind CSS, and Supabase.
+# Checkers — Тренируй мышление, один ход за раз
 
-## What it does
+Большинство шашечных приложений — просто доска.Я сделала продукт.
 
-- **Play checkers** with full rule enforcement: diagonal movement only, mandatory captures, king promotion (дамка), and win/draw detection.
-- **Two game modes**: Player vs AI (3 difficulty levels) and Player vs Player on the same screen.
-- **Smart AI opponent** powered by minimax with alpha-beta pruning — the Hard difficulty searches up to 7 moves deep.
-- **AI Coach**: After each game, the AI reviews your play and highlights up to 3 key moments where a better move was available (missed captures, missed king promotions).
-- **Authentication**: Sign up with username + city, log in, and persist your history across sessions.
-- **Stats dashboard**: See your wins, losses, win rate, rating, and recent game history.
-- **Global leaderboard**: Ranked by rating, filterable by Kazakh city (Astana, Almaty, Shymkent, …).
-- **Dark / Light theme**: Automatic system detection with manual toggle.
-- **Fully responsive**: Plays well on mobile and desktop.
+## Что я построила
+Полноценная шашечная платформа, которая обучает игре, бросает вызов с помощью ИИ и соединяет вас с друзьями — всё в одном месте. Создано на Next.js, Supabase и Claude AI.
 
-## Who it's for
+Возможности:
+- 📚 Интерактивное обучение в 5 шагов — учит правилам через действие, а не чтение
+- 🤖 ИИ-противник с 3 уровнями сложности (Hard для Pro пользователей)
+- 👥 Онлайн мультиплеер через код комнаты — поделись ссылкой, играй сразу
+- 🧠 ИИ Тренер на базе Claude — анализирует игру после окончания и объясняет ошибки
+- 🎨 Кастомные скины фигур для персонализации доски
+- ⭐ Pro подписка — один клик, без оплаты, мгновенный доступ
+- 🌐 3 языка: английский, русский, казахский
+- 🌙 Тёмная/светлая тема
 
-- Casual players who want a quick checkers game without installing anything.
-- Students and hobbyists learning about minimax AI.
-- Players in Kazakhstan who want to compete on a city-filtered leaderboard.
+## Для кого
+Для тех, кто хочет развить стратегическое мышление — от новичков, изучающих правила впервые, до casual игроков, которые хотят настоящего вызова. Также отлично подходит для казахско- и русскоязычных пользователей.
 
-## Why it's valuable
+## Почему это ценно
+Шашки — одна из старейших стратегических игр в мире, но большинство онлайн-версий выглядят как сделанные в 2005 году. Мы создали продукт, который ощущается как настоящий сервис: чистый дизайн, ИИ-анализ, мультиплеер и обучающий режим, который реально работает.
 
-Most checkers sites are dated, ad-heavy, or don't work on mobile. This app combines a clean modern UI, a real AI opponent with adjustable difficulty, and a post-game coach that helps you improve — all in one lightweight Next.js app backed by Supabase.
+Функция ИИ Тренера — вот что делает нас другими. После каждой игры Claude анализирует ваши ходы и объясняет, где вы ошиблись. Это не просто игра — это инструмент для тренировки.
 
-## Tech stack
+## Бизнес-мышление
+Pro план показывает, как может выглядеть монетизация:  ИИ Тренер, премиум скины и история игр. Один клик для апгрейда — минимум трения. В реальной версии это было бы $4.99/месяц через Stripe.
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS |
-| Animations | Framer Motion |
-| Database / Auth | Supabase (PostgreSQL + Row Level Security) |
-| Deployment | Vercel |
+## Важно
+При регистрации используйте настоящий email — на него придёт письмо с подтверждением аккаунта.
 
-## Running locally
+## Живое демо
+[ссылка будет добавлена после деплоя]
 
-### Prerequisites
-
-- Node.js 18+
-- A free [Supabase](https://supabase.com) project
-
-### 1. Clone and install
-
-```bash
-git clone https://github.com/your-username/checkers-website.git
-cd checkers-website
-npm install
-```
-
-### 2. Set up Supabase
-
-1. Create a new project at [supabase.com](https://supabase.com).
-2. In the SQL Editor, run the contents of `supabase/schema.sql` to create all tables, views, policies, and functions.
-3. Copy your project URL and anon key from **Settings → API**.
-
-### 3. Configure environment variables
-
-```bash
-cp .env.local.example .env.local
-```
-
-Edit `.env.local`:
-
-```
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-```
-
-### 4. Start the dev server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-## Project structure
-
-```
-src/
-├── app/                    # Next.js App Router pages
-│   ├── page.tsx            # Home + game screen
-│   ├── stats/              # Player stats page
-│   ├── leaderboard/        # Global leaderboard
-│   ├── auth/login/         # Sign in
-│   ├── auth/signup/        # Create account
-│   └── api/games/          # REST endpoint to save game results
-├── components/
-│   ├── Board.tsx           # Interactive game board
-│   ├── GameControls.tsx    # Turn indicator, piece counters
-│   ├── GameSetup.tsx       # Mode / difficulty picker
-│   ├── AiCoach.tsx         # Post-game analysis panel
-│   ├── Navbar.tsx          # Navigation bar
-│   └── ThemeToggle.tsx     # Dark/light switch
-├── lib/
-│   ├── checkers/
-│   │   ├── engine.ts       # Full checkers rule engine
-│   │   └── ai.ts           # Minimax + alpha-beta AI
-│   ├── supabase/           # Browser and server Supabase clients
-│   └── types.ts            # Shared TypeScript types
-├── hooks/
-│   └── useGame.ts          # Game state + AI turn management
-└── context/
-    └── ThemeContext.tsx     # Theme provider
-supabase/
-└── schema.sql              # Complete database schema
-```
-
-## Game rules implemented
-
-- Pieces move diagonally forward only (kings move in any direction).
-- Captures are mandatory — if you can capture, you must.
-- Chain captures (multiple jumps in one turn) are required when available.
-- A piece reaching the opponent's back row becomes a king (♛).
-- The game ends when a player has no pieces or no legal moves.
-
-## Deploying to Vercel
-
-```bash
-npm install -g vercel
-vercel
-```
-
-Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` as environment variables in the Vercel dashboard.
-
-## License
-
-MIT
+## Технологии
+Next.js 14 · TypeScript · Tailwind CSS · Supabase · Claude AI · Vercel
