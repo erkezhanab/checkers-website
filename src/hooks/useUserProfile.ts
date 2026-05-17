@@ -18,16 +18,17 @@ export function useUserProfile(): UseUserProfileResult {
   useEffect(() => {
     if (!isSupabaseConfigured()) return;
     const supabase = createClient();
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_, session) => {
       const sessionUser = session?.user ?? null;
       if (!sessionUser) { setProfile(null); return; }
-      supabase
-        .from("player_stats")
-        .select("*")
-        .eq("user_id", sessionUser.id)
-        .maybeSingle()
-        .then(({ data: stats }) => setProfile(stats ?? null))
-        .catch((_err: unknown) => {});
+      try {
+        const { data: stats } = await supabase
+          .from("player_stats")
+          .select("*")
+          .eq("user_id", sessionUser.id)
+          .maybeSingle();
+        setProfile(stats ?? null);
+      } catch {}
     });
     return () => subscription.unsubscribe();
   }, [tick]);
