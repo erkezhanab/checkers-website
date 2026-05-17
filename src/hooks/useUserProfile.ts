@@ -27,7 +27,7 @@ export function useUserProfile(): UseUserProfileResult {
         .eq("user_id", sessionUser.id)
         .maybeSingle()
         .then(({ data: stats }) => setProfile(stats ?? null))
-        .catch(() => {});
+        .catch((_err: unknown) => {});
     });
     return () => subscription.unsubscribe();
   }, [tick]);
