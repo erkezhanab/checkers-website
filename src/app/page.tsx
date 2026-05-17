@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { GameSetup } from "@/components/GameSetup";
@@ -17,7 +17,15 @@ import { useLanguage } from "@/context/LanguageContext";
 import { CheckersLogo } from "@/components/CheckersLogo";
 import { useUser } from "@/context/UserContext";
 
-export default function HomePage() {
+export default function Page() {
+  return (
+    <Suspense>
+      <HomePage />
+    </Suspense>
+  );
+}
+
+function HomePage() {
   const [config, setConfig] = useState<GameConfig | null>(null);
   const [key, setKey] = useState(0);
   const { t } = useLanguage();
