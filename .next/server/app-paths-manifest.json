@@ -1,8 +1,0 @@
-{
-  "/history/page": "app/history/page.js",
-  "/auth/login/page": "app/auth/login/page.js",
-  "/page": "app/page.js",
-  "/auth/signup/page": "app/auth/signup/page.js",
-  "/shop/page": "app/shop/page.js",
-  "/learn/page": "app/learn/page.js"
-}
